@@ -3,6 +3,12 @@ const app_code = require("../services/functions");
 
 const router = express.Router();
 
+const authMiddleware = require("../middlewares/auth");
+const validateResponserMiddleware = require("../middlewares/validateResponse");
+
+router.use(authMiddleware);
+router.use(validateResponserMiddleware);
+
 router.get("/", async (req, res, next) => {
   try {
     res.json(await app_code.getAll(req.query.page));

@@ -2,7 +2,7 @@ const db = require("./db");
 const helper = require("../helper");
 const config = require("../config");
 
-const api_url = "http://localhost:8000/turma";
+const api_url = "https://votacaocode.snctjp.com.br/api/turma";
 
 async function getAll(page = 1) {
   const total = await db.query(`SELECT COUNT(*) FROM sysdevotacao_turmas`);
