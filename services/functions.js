@@ -2,15 +2,12 @@ const db = require("./db");
 const helper = require("../helper");
 const config = require("../config");
 
-const api_url = "http://192.168.20.185:8000/turma";
+const api_url = "http://localhost:8000/turma";
 
 async function getAll(page = 1) {
   const total = await db.query(`SELECT COUNT(*) FROM sysdevotacao_turmas`);
   var nRows = total[0]["COUNT(*)"];
   const maxPage = Math.ceil(nRows / config.listPerPage);
-
-  //console.log(maxPage);
-  //console.log("getAll");
 
   const offset = helper.getOffset(page, config.listPerPage);
   const rows = await db.query(
