@@ -10,6 +10,7 @@ router.use(authMiddleware);
 router.use(validateResponserMiddleware);
 
 router.get("/", async (req, res, next) => {
+  console.log('enter get')
   try {
     res.json(await app_code.getAll(req.query.page));
   } catch (err) {

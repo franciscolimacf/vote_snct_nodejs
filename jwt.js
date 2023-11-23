@@ -3,6 +3,7 @@ const JWT_SECRET = process.env.JWT_SECRET || "NOTIFICATION_API";
 const jwtLib = require("jsonwebtoken");
 
 const sign = (values = {}) => {
+  console.log("sign");
   return jwtLib.sign(values, JWT_SECRET, {
     algorithm: "HS256",
     expiresIn: "365d",
@@ -10,8 +11,11 @@ const sign = (values = {}) => {
 };
 
 const verify = (token) => {
+  console.log("Verifying");
   try {
-    return jwtLib.verify(token, JWT_SECRET);
+    const res = jwtLib.verify(token, JWT_SECRET);
+    console.log("Verified");
+    return res;
   } catch (error) {
     console.error(error);
     return undefined;
